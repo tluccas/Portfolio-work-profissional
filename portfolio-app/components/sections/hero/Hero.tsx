@@ -54,7 +54,7 @@ export default function Hero() {
             });
           });
         }, "-=0.3")
-        .add(fadeInUp(ctaRef.current, { duration: 0.3}), "-=0.1");
+        .add(fadeInUp(ctaRef.current, { duration: 0.3 }), "-=0.1");
     },
     { scope: containerRef },
   );
@@ -78,18 +78,39 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Container */}
       <div
         ref={containerRef}
         className="relative z-10 container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center"
       >
         {/* Esquerda */}
         <div className="text-foreground text-center lg:text-left animate-fade-in-left">
+
+          {/* Título */}
           <h1
             ref={titleRef}
-            className="font-heading text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-4"
+            className="relative inline-block font-heading text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-4 pb-4"
           >
             {content.title}
+            {/* Efeito sublinhado */}
+            <span className="absolute bottom-0 left-0 w-60 hidden lg:block">
+              <svg
+                viewBox="0 0 200 20"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-full"
+              >
+                <path
+                  fill="none"
+                  stroke="#4988C4"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  d="M0,15 Q15,0 50,12 T100,10 T150,10 T200,10"
+                />
+              </svg>
+            </span>
           </h1>
+
+          {/* Descrição */}
           <p
             ref={descriptionRef}
             className="text-lg lg:text-xl mb-8 max-w-xl mx-auto lg:mx-0"
@@ -133,22 +154,51 @@ export default function Hero() {
         {/* Lado Direito: Imagem do Profissional */}
         <div
           ref={imageRef}
-          className="flex justify-center lg:justify-end animate-fade-in-right"
+          className="relative flex justify-center lg:justify-end md:mt-4"
         >
-          <Image
-            src={content.imageDesktopSrc}
-            alt="/assets/hero-desk2.png"
-            width={400}
-            height={400}
-            priority // Imagem LCP, deve carregar imediatamente
-            // className="rounded-full w-64 h-64 md:w-80 md:h-80 lg:w-100 lg:h-100
-            //            object-cover object-top border-4 border-action-primary shadow-2xl"
-            className="object-cover
-      mask-[linear-gradient(to_right,black_80%,transparent),linear-gradient(to_bottom,black_80%,transparent)]
-      mask-intersect
-      [--webkit-mask-composite:source-in]
-          "
-          />
+          {/* Blob */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-auto lg:right-[-10%] lg:translate-x-0 w-[120%] h-[120%] -z-10 pointer-events-none ">
+            <svg
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-full h-full text-primary filter drop-shadow-xl"
+            >
+              {/* Camada de sombra do blob */}
+              <path
+                fill="currentColor"
+                className="text-blue-400"
+                opacity="0.2"
+                d="M49.7,-75.7C63.8,-68.4,74.2,-53.5,79.3,-37.6C84.4,-21.7,84.3,-4.8,78.1,8.5C71.9,21.8,59.7,31.4,49.6,43.1C39.6,54.7,31.8,68.2,20.8,71.9C9.9,75.5,-4.3,69.2,-16.9,63.1C-29.6,56.9,-40.6,50.9,-52.8,42.6C-65,34.3,-78.2,23.7,-80.5,11.2C-82.9,-1.3,-74.4,-15.7,-66.8,-29.7C-59.2,-43.7,-52.4,-57.3,-41.4,-66.1C-30.4,-74.9,-15.2,-78.8,1.3,-80.8C17.8,-82.9,35.7,-83.1,49.7,-75.7Z"
+                transform="translate(104 104)" /* Deslocado levemente para baixo/direita */
+              />
+
+              {/* Blob Principal */}
+              <path
+                fill="currentColor"
+                className="text-brand-body opacity-20"
+                d="M49.7,-75.7C63.8,-68.4,74.2,-53.5,79.3,-37.6C84.4,-21.7,84.3,-4.8,78.1,8.5C71.9,21.8,59.7,31.4,49.6,43.1C39.6,54.7,31.8,68.2,20.8,71.9C9.9,75.5,-4.3,69.2,-16.9,63.1C-29.6,56.9,-40.6,50.9,-52.8,42.6C-65,34.3,-78.2,23.7,-80.5,11.2C-82.9,-1.3,-74.4,-15.7,-66.8,-29.7C-59.2,-43.7,-52.4,-57.3,-41.4,-66.1C-30.4,-74.9,-15.2,-78.8,1.3,-80.8C17.8,-82.9,35.7,-83.1,49.7,-75.7Z"
+                transform="translate(100 100)"
+              />
+            </svg>
+          </div>
+
+          {/* Foto com mask */}
+          <div className="relative z-10">
+            <Image
+              src={content.imageDesktopSrc}
+              alt="Psicopedagoga Lourdes"
+              width={450}
+              height={450}
+              priority
+              className="object-cover"
+              style={{
+                maskImage:
+                  "linear-gradient(to bottom, black 85%, transparent 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, black 85%, transparent 100%)",
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>
