@@ -60,7 +60,7 @@ export default function Roadmap() {
   return (
     <section
       ref={containerRef}
-      className="relative flex flex-col isolate items-center justify-start overflow-hidden bg-background pt-8 pb-40 lg:pt-12"
+      className="relative flex flex-col isolate items-center justify-start overflow-hidden bg-background pt-8 pb-30 lg:pt-12"
     >
       {/* Background */}
       <Blob className="absolute top-[-10%] left-[-20%] w-125 h-125 opacity-40 rotate-12" />
