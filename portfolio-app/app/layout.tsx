@@ -13,7 +13,8 @@ const inter = Inter({
 const figtree = Figtree({
   variable: "--font-figtree",
   subsets: ["latin"],
-})
+  weight: ["300", "400", "500", "600", "700", "800"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
