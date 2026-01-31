@@ -1,0 +1,75 @@
+export default function Line() {
+  return (
+    <div className="hidden lg:block absolute isolate left-0 w-full top-1/2 -z-10 pointer-events-none px-6">
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 1440 41"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <line
+          className="line-to-animate"
+          x1="-12"
+          y1="38.5"
+          x2="358"
+          y2="38.5"
+          stroke="#F56565"
+          strokeWidth="5"
+        />
+        <line
+          className="line-to-animate"
+          x1="355.5"
+          y1="41"
+          x2="355.5"
+          y2="4"
+          stroke="#F56565"
+          strokeWidth="5"
+        />
+        <line
+          className="line-to-animate"
+          x1="353"
+          y1="2.5"
+          x2="725"
+          y2="2.5"
+          stroke="#F56565"
+          strokeWidth="5"
+        />
+        <line
+          className="line-to-animate"
+          x1="722.5"
+          y1="4"
+          x2="722.5"
+          y2="41"
+          stroke="#F56565"
+          strokeWidth="5"
+        />
+        <line
+          className="line-to-animate"
+          x1="720"
+          y1="38.5"
+          x2="1077"
+          y2="38.5"
+          stroke="#F56565"
+          strokeWidth="5"
+        />
+        <line
+          className="line-to-animate"
+          x1="1074.5"
+          y1="41"
+          x2="1074.5"
+          y2="4"
+          stroke="#F56565"
+          strokeWidth="5"
+        />
+        <path
+          className="line-to-animate"
+          d="M1072 3L1454 3.00003"
+          stroke="#F56565"
+          strokeWidth="5"
+        />
+      </svg>
+    </div>
+  );
+}
