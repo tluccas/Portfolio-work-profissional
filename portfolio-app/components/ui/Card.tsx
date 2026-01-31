@@ -10,7 +10,7 @@ interface CardProps {
 export default function Card({ Icon, title, description, number, className }: CardProps){
    return (
      <div
-       className={`flex flex-col bg-white p-4 shadow-xl/30 border-none rounded-xl w-64 h-94.25 mx-auto hover:shadow-xl/90 hover:shadow-accent transition-shadow duration-300 ${className}`}
+       className={`flex flex-col bg-white p-4 shadow-xl/30 border-none select-none rounded-xl w-64 h-94.25 mx-auto hover:shadow-xl/90 hover:shadow-accent transition-shadow duration-300 ${className}`}
      >
        <div className="mb-2">
          {Icon && (
