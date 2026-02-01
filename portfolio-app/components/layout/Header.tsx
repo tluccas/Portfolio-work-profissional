@@ -11,7 +11,7 @@ export default function Header() {
     { name: "Início", href: "#hero" },
     { name: "Sobre", href: "#sobre" },
     { name: "Avaliações", href: "#avaliacoes" },
-    { name: "Localização", href: "#contato" },
+    { name: "Localização", href: "#location" },
   ];
 
   useEffect(() => {

@@ -23,7 +23,7 @@ export default function Location() {
     );
     
   return (
-    <section className="relative flex flex-col isolate items-center justify-start overflow-hidden bg-background pt-8 pb-40 lg:pt-20">
+    <section id="location" className="relative flex flex-col isolate items-center justify-start overflow-hidden bg-background pt-8 pb-40 lg:pt-20">
       <div className="relative z-10 container mx-auto px-6 flex flex-col">
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full items-start">
