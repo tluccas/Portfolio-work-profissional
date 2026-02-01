@@ -7,10 +7,10 @@
 
 ## 🔎 About
 
-[en]
+**[en]**
 This is a **professional _Web Development_ project** focused on delivering a complete, modern, and conversion-focused portfolio. Build with **Next.js** following good programming principles, Clean Code and component-based design.
 
-[pt]
+**[pt]**
 Esse é um **projeto profissional de _Desenvolvimento Web_** focado em entregar um portfólio completo, moderno e focado em conversão. Construído com **Next.js** seguindo bons príncipios de programação, Clean Code e componentização.
 
 > [!TIP]
@@ -64,12 +64,12 @@ Esse é um **projeto profissional de _Desenvolvimento Web_** focado em entregar 
 ## 📜 License Notice
 
 > [!WARNING]
-> [en] This project was developed by **Lucas Alves**.
+> **[en]** This project was developed by **Lucas Alves**.
 > The source code is provided for **viewing and study** purposes only.
 > ✘ Copying or redistribution is not permitted without the author's express authorization.
 
 > [!WARNING]
-> [pt] Este projeto foi desenvolvido por **Lucas Alves**.
+> **[pt]** Este projeto foi desenvolvido por **Lucas Alves**.
 > O código-fonte é disponibilizado apenas para fins de **visualização e estudo**.
 > ✘ Não é permitida a cópia ou redistribuição sem autorização expressa do autor.
 
