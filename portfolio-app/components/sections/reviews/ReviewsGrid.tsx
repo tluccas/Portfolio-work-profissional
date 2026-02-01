@@ -35,9 +35,10 @@ export default function ReviewsGrid() {
         { yPercent: -50 },
         {
           yPercent: 0,
-          duration: 30,
+          duration: 80,
           repeat: -1,
           ease: "none",
+     
         },
       );
 
@@ -46,9 +47,10 @@ export default function ReviewsGrid() {
         { yPercent: 0 },
         {
           yPercent: -50,
-          duration: 30,
+          duration: 80,
           repeat: -1,
           ease: "none",
+     
         },
       );
     },
