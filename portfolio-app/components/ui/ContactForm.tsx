@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
@@ -9,7 +10,7 @@ export default function ContactForm() {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  function handleSubmit(e: React.SyntheticEvent) {
+  async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
 
     const newErrors: Record<string, string> = {};
@@ -26,8 +27,32 @@ export default function ContactForm() {
     }
 
     setErrors({});
-    // Implement a call to email sending route (working on it now)
-    console.log({ name, email, phone, message });
+
+    try{
+      const formData = { name, email, phone, message };
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.message || "Erro ao enviar mensagem. Tente novamente.");
+        return;
+      }
+
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+      toast.error("Erro ao enviar mensagem. Tente novamente.");
+      return;
+    }
+    toast.info("Mensagem enviada com sucesso! Em breve entrarei em contato.");
   }
 
 
@@ -35,61 +60,64 @@ export default function ContactForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="w-full max-w-xl space-y-4 p-6 "
+      className="w-full max-w-xl space-y-4 p-6 border border-action-primary/50 bg-brand-body/5 rounded-3xl shadow-lg mx-auto"
     >
       <div className="flex flex-col gap-1">
-        <div className="flex flex-col gap-1">
-          <label className="text-base font-medium text-foreground">
-            Nome
-            <span className="text-accent"> *</span>
-          </label>
-          <input
-            type="name"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-              if (errors.name) setErrors((prev) => ({ ...prev, name: "" }));
-            }}
-            className={`w-full px-4 py-2 border border-action-secondary rounded-md focus:outline-none focus:ring-2 transition-colors ${
-              errors.name
-                ? "border-red-500 focus:border-red-500 focus:ring-red-100"
-                : "focus:border-action-primary focus:ring-action-primary"
-            }`}
-            placeholder="Seu nome"
-          />
-          {errors.name && (
-            <p className="text-xs text-red-500 mt-1 font-medium">
-              {errors.name}
-            </p>
-          )}
+        <div className="flex gap-6">
+          <div className="flex flex-col gap-1 w-full">
+            <label className="ml-2 text-base font-medium text-foreground">
+              Nome
+              <span className="ml-1 text-accent">*</span>
+            </label>
+            <input
+              type="name"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+                if (errors.name) setErrors((prev) => ({ ...prev, name: "" }));
+              }}
+              className={`w-full px-4 py-2 border border-action-secondary rounded-3xl focus:outline-none focus:ring-2 transition-colors ${
+                errors.name
+                  ? "border-red-500 focus:border-red-500 focus:ring-red-100"
+                  : "focus:border-action-primary focus:ring-action-primary"
+              }`}
+              placeholder="Seu nome"
+            />
+            {errors.name && (
+              <p className="text-xs text-red-500 mt-1 font-medium">
+                {errors.name}
+              </p>
+            )}
+          </div>
+          <div className="flex flex-col gap-1 w-full">
+            <label className=" ml-2 text-base font-medium text-foreground">
+              Email<span className="ml-1 text-accent">*</span>
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (errors.email) setErrors((prev) => ({ ...prev, email: "" }));
+              }}
+              className={`w-full px-4 py-2 border border-action-secondary rounded-3xl focus:outline-none focus:ring-2 transition-colors ${
+                errors.email
+                  ? "border-red-500 focus:border-red-500 focus:ring-red-100"
+                  : "focus:border-action-primary focus:ring-action-primary"
+              }`}
+              placeholder="Seu email"
+            />
+            {errors.email && (
+              <p className="text-xs text-red-500 mt-1 font-medium">
+                {errors.email}
+              </p>
+            )}
+          </div>
         </div>
-
-        <label className="text-base font-medium text-foreground">
-          Email <span className="text-accent">*</span>
-        </label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            if (errors.email) setErrors((prev) => ({ ...prev, email: "" }));
-          }}
-          className={`w-full px-4 py-2 border border-action-secondary rounded-md focus:outline-none focus:ring-2 transition-colors ${
-            errors.email
-              ? "border-red-500 focus:border-red-500 focus:ring-red-100"
-              : "focus:border-action-primary focus:ring-action-primary"
-          }`}
-          placeholder="Seu email"
-        />
-        {errors.email && (
-          <p className="text-xs text-red-500 mt-1 font-medium">
-            {errors.email}
-          </p>
-        )}
       </div>
 
       <div className="flex flex-col gap-1">
-        <label className="text-base font-medium text-foreground">
+        <label className="ml-2 text-base font-medium text-foreground">
           Telefone
         </label>
         <input
@@ -99,13 +127,13 @@ export default function ContactForm() {
             setPhone(e.target.value);
             if (errors.phone) setErrors((prev) => ({ ...prev, phone: "" }));
           }}
-          className={`w-full px-4 py-2 border border-action-secondary rounded-md focus:border-action-primary focus:ring-action-primaryfocus:outline-none focus:ring-2 transition-colors`}
+          className={`w-full px-4 py-2 border border-action-secondary rounded-3xl focus:border-action-primary focus:ring-action-primaryfocus:outline-none focus:ring-2 transition-colors`}
           placeholder="Seu telefone"
         />
       </div>
 
       <div className="flex flex-col gap-1">
-        <label className="text-base font-medium text-foreground">
+        <label className="ml-2 text-base font-medium text-foreground">
           Mensagem
         </label>
         <textarea
@@ -115,14 +143,14 @@ export default function ContactForm() {
             setMessage(e.target.value);
             if (errors.message) setErrors((prev) => ({ ...prev, message: "" }));
           }}
-          className={`w-full px-4 py-2 border border-action-secondary rounded-md focus:border-action-primary focus:ring-action-primary focus:outline-none focus:ring-2 transition-colors`}
+          className={`w-full px-4 py-2 border border-action-secondary rounded-3xl focus:border-action-primary focus:ring-action-primary focus:outline-none focus:ring-2 transition-colors`}
           placeholder="Sua mensagem"
         />
       </div>
 
       <button
         type="submit"
-        className="flex gap-2 px-4 py-2 rounded-sm bg-action-primary hover:cursor-pointer text-white hover:scale-102 hover:shadow-lg hover:shadow-blue-500/50 transition "
+        className="flex w-full h-15 justify-center items-center gap-2 px-4 py-2 rounded-3xl bg-action-primary hover:cursor-pointer text-white font-medium text-xl hover:scale-102 hover:shadow-lg hover:shadow-blue-500/50 transition "
       >
         Enviar
       </button>
